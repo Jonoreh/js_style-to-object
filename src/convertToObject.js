@@ -14,7 +14,11 @@ function convertToObject(sourceString) {
     .reduce((prevDeclaration, curDeclaration) => {
       const [property, value] = curDeclaration.split(':');
 
-      return { ...prevDeclaration, [property.trim()]: value.trim() };
+      if (value) {
+        prevDeclaration[property.trim()] = value.trim();
+      }
+
+      return prevDeclaration;
     }, {});
 
   return properties;
